@@ -17,11 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from .views import index, peche
+from PostgreApp.urls import router as users_router
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.registry.extend(users_router.registry)
 
 
 urlpatterns = [
     path('', index),
     path('admin/', admin.site.urls),
     path('peche/', peche),
-    path('welcomeApp/', include("WelcomeApp.urls"))
+    path('welcomeApp/', include("WelcomeApp.urls")),
+    path('', include("BootApp.urls")),
+    path('', include(router.urls)),
 ]
