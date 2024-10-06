@@ -6,7 +6,7 @@ from .serializers import UserSerializer, UserListSerializer
 
 from .models import User, UserList
 
-# Create your views here.
+# La classe views va recevoir les appels d'API et va appeler les serializers.
 
 class UserViewSet(viewsets.ModelViewSet):
 

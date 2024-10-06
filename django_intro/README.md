@@ -6,7 +6,7 @@ Création de l'environnement virtuel
 `python -m venv .env`
 
 Installation des librairies
-`pip install -r requirements.txt`
+`pip install -r requirements.txt`  
 
 
 ### Commandes Django
@@ -74,3 +74,27 @@ Lancer les tests
         index.html
     ...
 ```
+
+### PostgreSQL
+
+La connexion à la BDD se fait dans le fichier settings.py :
+```
+DATABASES = {
+    'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'OPTIONS':{ 'options': '-c search_path=madoSchema' },
+            'NAME': 'djangoDB',
+            'USER': 'postgres',
+            'PASSWORD': 'pwd',
+            'HOST': 'localhost',
+            'PORT': '5432',
+    }
+}
+```
+On créé les modèles, on fait les migrations et normalement nos tables apparaissent  
+*Important* : Il faut modifier le search_path sur pgAdmin pour faire des requêtes sur des tables de notre schéma :
+```sql
+SHOW search_path;
+SET SEARCH_PATH TO notreSchéma;
+```
+Car par défaut on va pointer sur le schéma `public`

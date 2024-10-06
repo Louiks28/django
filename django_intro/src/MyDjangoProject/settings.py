@@ -42,8 +42,18 @@ INSTALLED_APPS = [
     'WelcomeApp',
     'BootApp',
     'PostgreApp',
+    # API REST
     'rest_framework',
+    # Filtre de recherche (vue admin)
     'django_filters',
+    # authentification API
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    # Cross-origin resource sharing
+    'corsheaders',
+    'Usermanagement',
+    # Generation Swagger
+    'drf_yasg',
 ]
 
 REST_FRAMEWORK = {
@@ -57,6 +67,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -166,3 +177,12 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ALLOWED_ORIGIN = [
+    'http://localhost:4200'
+]
+
+#Pour permettre le login sur la page du Swagger
+SWAGGER_SETTINGS = {
+    'LOGIN_URL': '/admin/login/',
+    'LOGOUT_URL': '/admin/logout/'
+}
