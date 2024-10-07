@@ -82,7 +82,7 @@ La connexion à la BDD se fait dans le fichier settings.py :
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'OPTIONS':{ 'options': '-c search_path=madoSchema' },
+            'OPTIONS':{ 'options': '-c search_path=madoschema' },
             'NAME': 'djangoDB',
             'USER': 'postgres',
             'PASSWORD': 'pwd',
@@ -97,4 +97,18 @@ On créé les modèles, on fait les migrations et normalement nos tables apparai
 SHOW search_path;
 SET SEARCH_PATH TO notreSchéma;
 ```
-Car par défaut on va pointer sur le schéma `public`
+Car par défaut on va pointer sur le schéma `public`  
+Ensuite on attribue les droits à notre user
+
+```sql
+GRANT ALL ON SCHEMA "madoSchema" TO postgres
+```
+Très important de mettre les "" si notre schéma contient des majuscules  
+Le plus simple : **ne pas mettre de majuscule dans les noms de schéma**
+
+Pour afficher la database ou le schéma sélectionné
+
+```sql
+SELECT CURRENT_SCHEMA;
+SELECT current_database();
+```
