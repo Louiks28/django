@@ -55,7 +55,7 @@ ROOT_URLCONF = 'MadoProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], # on va regarder en priorité ici avant d'aller dans le code source de django. Cela permet de personnaliser les pages admin par exemple
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'MadoProject.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'OPTIONS':{ 'options': '-c search_path=madoSchema' },
+            'OPTIONS':{ 'options': '-c search_path=madoschema' },
             'NAME': 'djangoDB',
             'USER': 'postgres',
             'PASSWORD': 'louisc28',
@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-FR'
 
 TIME_ZONE = 'UTC'
 
