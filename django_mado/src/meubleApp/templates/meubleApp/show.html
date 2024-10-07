@@ -8,6 +8,7 @@
 <body>
     <h1> {{ meuble.titre }} </h1>
     <p> Prix : {{ meuble.prix }} </p>
+    <p> Créateur : {{ meuble.auteur.nom }} </p>
 
     <p><a href="{% url 'liste_meuble' %}">&laquo; Revenir à la liste de meubles </a></p>
     

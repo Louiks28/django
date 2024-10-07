@@ -74,6 +74,7 @@
       <div class="row">
         <div class="col-lg-8">
             <!-- Affichage de la liste -->
+             <li> Si la BDD est Vide, on peut l'initialiser avec quelques meubles<a href="{% url 'dbVide' %}"> ici </a></li>
             <ul>
                 {% for m in meubles %}
                     <li> <a href="{% url 'show' m.id %}">{{ m.titre }} </a></li>
