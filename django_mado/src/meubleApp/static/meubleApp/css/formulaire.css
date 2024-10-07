@@ -1,0 +1,29 @@
+body {
+    background-color: black; /* Fond noir pour la page */
+    color: white; /* Texte en blanc pour tout le corps de la page */
+    
+}
+
+h1 {
+    font-weight: bold; /* Texte en gras */
+    color: white; /* Texte en blanc */
+    text-align: center; /* Texte centré */
+}
+
+form{
+    color: white;
+    margin-left: 20%;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+input[type="text"], input[type="password"], input[type="email"]{
+    border: 2px solid #adada9;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+input[type="submit"]{
+    border: 3px solid #376e2d;
+    padding: 10px;
+}

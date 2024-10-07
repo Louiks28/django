@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des meubles en stock</title>
+    <link rel="stylesheet" href="{% static 'meubleApp/css/listing.css' %}">
+</head>
+
+    <div class="tableau_meuble">
+
+        <table>
+            <caption>Liste des meubles en stock</caption>
+            <tr>
+                <th>Nom du meuble</th>
+                <th>Auteur</th>
+                <th>Prix</th>
+                <th colspan="2">Action</th>
+            </tr>
+
+            {% for m in meubles %}
+            
+                <tr>
+                    <td class="meuble_nom"><a href="{% url 'meubleApp:show' m.id %}"> {{ m.titre }} </a></td>
+                    <td> {{ m.auteur.nom }} </td>
+                    <td> {{ m.prix | floatformat:1 }} € </td>
+                    <td><img src="{% static 'meubleApp/img/edit.png' %}" /></td>
+                    <td>
+                        <a href="{% url 'meubleApp:delete_meuble' m.id %}">
+                            <img src="{% static 'meubleApp/img/delete.png' %}" />
+                        </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            
+        </table>
+
+    </div>
+    <div class="button">
+        <a href=#addMeuble></a>
+            <button type="button"> 
+                + AJOUTER MEUBLE 
+            </button>
+        </a>
+    </div>
+    
+
+
+</html>

@@ -5,6 +5,8 @@ from django.template import loader
 
 import datetime
 
+from meubleApp.forms import FormClassique
+
 from .models import Auteur, Meuble
 
 """
@@ -42,6 +44,28 @@ def madoList(request):
 def show(request, meuble_id):
     context = {"meuble": get_object_or_404(Meuble, pk = meuble_id)}
     return render(request, "meubleApp/show.html", context)
+
+def listing(request):
+    context = {"meubles" : Meuble.objects.all()}
+    return render(request, "meubleApp/listing.html", context)
+
+def formulaire(request):
+    if request.method == 'POST' :
+        form = FormClassique(request.POST)
+        if form.is_valid():
+            return redirect("meubleApp:formulaire")
+    else:
+        form = FormClassique()
+    context = {"form": form}
+
+    return render(request, "meubleApp/formulaire.html", context)
+
+def delete(request, meuble_id):
+    # meuble_to_delete = Meuble.objects.get(filter(titre = meuble_titre)).first()
+    meuble_to_delete = get_object_or_404(Meuble, pk = meuble_id)
+    meuble_to_delete.delete()
+    return redirect("meubleApp:listing_meuble")
+
 
 
 def RemplirSiDBVide(request):
@@ -83,4 +107,4 @@ def RemplirSiDBVide(request):
         # Meuble.save()
 
 
-    return redirect("liste_meuble")
+    return redirect("meubleApp:liste_meuble")
