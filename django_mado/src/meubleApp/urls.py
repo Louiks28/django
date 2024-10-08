@@ -10,5 +10,7 @@ urlpatterns = [
     path('dbVide/', views.RemplirSiDBVide, name='dbVide'),   # /meuble/dbVide
     path('form/', views.formulaire, name='formulaire'), # /meuble/form
     path('listing/', views.listing, name='listing_meuble'), # /meuble/listing
-    path('deleteMeuble/<int:meuble_id>', views.delete, name='delete_meuble'), # /meuble/deleteMeuble
+    path('deleteMeuble/<int:meuble_id>', views.delete, name='delete_meuble'), # /meuble/deleteMeuble/1
+    path('addMeuble/', views.ajout_meuble, name='ajout_meuble'), # /meuble/addMeuble
+    path('modifMeuble/<int:meuble_id>', views.modif_meuble, name='modif_meuble'), # /meuble/modifMeuble/1
 ]

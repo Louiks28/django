@@ -5,7 +5,7 @@ from django.template import loader
 
 import datetime
 
-from meubleApp.forms import FormClassique
+from meubleApp.forms import FormClassique, FormMeuble
 
 from .models import Auteur, Meuble
 
@@ -46,7 +46,7 @@ def show(request, meuble_id):
     return render(request, "meubleApp/show.html", context)
 
 def listing(request):
-    context = {"meubles" : Meuble.objects.all()}
+    context = {"meubles" : Meuble.objects.all().order_by('date')}
     return render(request, "meubleApp/listing.html", context)
 
 def formulaire(request):
@@ -61,10 +61,41 @@ def formulaire(request):
     return render(request, "meubleApp/formulaire.html", context)
 
 def delete(request, meuble_id):
-    # meuble_to_delete = Meuble.objects.get(filter(titre = meuble_titre)).first()
-    meuble_to_delete = get_object_or_404(Meuble, pk = meuble_id)
+
+    # meuble_to_delete = get_object_or_404(Meuble, pk = meuble_id)
+    meuble_to_delete = Meuble.objects.get(pk = meuble_id)
     meuble_to_delete.delete()
     return redirect("meubleApp:listing_meuble")
+
+def ajout_meuble(request):
+    if request.method == 'POST' :
+        form = FormMeuble(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("meubleApp:listing_meuble")
+    else:
+        form = FormMeuble()
+
+    context = {"form": form}
+
+    return render(request, "meubleApp/addMeuble.html", context)
+
+def modif_meuble(request, meuble_id):
+    meuble_to_update = Meuble.objects.get(pk = meuble_id)
+
+    if request.method == 'POST' :
+        form = FormMeuble(request.POST, instance = meuble_to_update)
+        if form.is_valid():
+            form.save()
+            return redirect("meubleApp:listing_meuble")
+    else:
+        form = FormMeuble(instance = meuble_to_update)
+
+    context = {"form": form}
+
+    return render(request, "meubleApp/addMeuble.html", context)
+
+    
 
 
 

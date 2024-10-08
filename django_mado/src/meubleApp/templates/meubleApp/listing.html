@@ -26,7 +26,11 @@
                     <td class="meuble_nom"><a href="{% url 'meubleApp:show' m.id %}"> {{ m.titre }} </a></td>
                     <td> {{ m.auteur.nom }} </td>
                     <td> {{ m.prix | floatformat:1 }} € </td>
-                    <td><img src="{% static 'meubleApp/img/edit.png' %}" /></td>
+                    <td>
+                        <a href="{% url 'meubleApp:modif_meuble' m.id %}">
+                            <img src="{% static 'meubleApp/img/edit.png' %}" />
+                        </a>
+                    </td>
                     <td>
                         <a href="{% url 'meubleApp:delete_meuble' m.id %}">
                             <img src="{% static 'meubleApp/img/delete.png' %}" />
@@ -40,11 +44,13 @@
 
     </div>
     <div class="button">
-        <a href=#addMeuble></a>
-            <button type="button"> 
-                + AJOUTER MEUBLE 
-            </button>
-        </a>
+        
+        <!-- <button type="button"> -->
+            <a href="{% url 'meubleApp:ajout_meuble' %}" type="button" class="AddMeubleButton">
+            + AJOUTER MEUBLE 
+            </a>
+        <!-- </button> -->
+    
     </div>
     
 

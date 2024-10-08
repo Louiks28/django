@@ -12,18 +12,29 @@ h1 {
 
 form{
     color: white;
-    margin-left: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
     font-weight: bold;
     font-size: 120%;
+    padding: 20px;
+    border: 2px solid #ffffff;;
 }
 
-input[type="text"], input[type="password"], input[type="email"]{
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], select{
     border: 2px solid #adada9;
     padding: 10px;
     border-radius: 30px;
+    margin-left: 5px;
+    margin-bottom: 15px;
 }
 
 input[type="submit"]{
     border: 3px solid #376e2d;
     padding: 10px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.errorlist {
+    color: rgb(143, 4, 4);
 }

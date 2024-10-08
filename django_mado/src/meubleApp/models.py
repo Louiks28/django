@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 class Auteur(models.Model):
     nom = models.CharField(max_length=64, unique = True) 
@@ -16,7 +17,7 @@ class Auteur(models.Model):
 
 class Meuble(models.Model):
     titre = models.CharField(max_length=100, default="meuble mado")
-    date = models.DateField()
+    date = models.DateField(default=datetime.date.today)
     couleur = models.CharField(max_length=50)
     prix = models.DecimalField(max_digits=10, decimal_places=2)
     auteur = models.ForeignKey(Auteur, on_delete=models.DO_NOTHING)

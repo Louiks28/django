@@ -44,11 +44,16 @@ td img {
     display: flex;
 }
 
-button {
+/* button {
     background-color: rgb(136, 88, 88);
     padding: 20px;
     font-weight: bold;
+} */
 
+.AddMeubleButton {
+    background-color: rgb(136, 88, 88);
+    padding: 20px;
+    font-weight: bold;
+    color: black;
+    text-decoration:none; /* enlever le soulignement */
 }
-
-
