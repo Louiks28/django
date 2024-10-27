@@ -2,6 +2,7 @@ import random
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
+from django.contrib.auth.decorators import login_required, permission_required
 
 import datetime
 
@@ -40,7 +41,7 @@ def madoList(request):
     context = {"meubles": Meuble.objects.all()}
     return render(request, "meubleApp/madoList.html", context)
 
-
+@login_required(login_url="/account/login")
 def show(request, meuble_id):
     context = {"meuble": get_object_or_404(Meuble, pk = meuble_id)}
     return render(request, "meubleApp/show.html", context)
@@ -67,6 +68,7 @@ def delete(request, meuble_id):
     meuble_to_delete.delete()
     return redirect("meubleApp:listing_meuble")
 
+@permission_required('meubleApp.change_meuble', login_url='/account/login', raise_exception=True)
 def ajout_meuble(request):
     if request.method == 'POST' :
         form = FormMeuble(request.POST)

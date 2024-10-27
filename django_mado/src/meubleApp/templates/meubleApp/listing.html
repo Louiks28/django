@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="{% static 'meubleApp/css/listing.css' %}">
 </head>
 
+    {% if user.is_authenticated %}
+        <p> Connecté sous {{user.username}} | <a href="{% url 'accountApp:logout_user' %}">Déconnexion</a> </p>
+    {% else %}
+        <p> 
+            <a href="{% url 'accountApp:login_user' %}">Connexion</a> | 
+            <a href="{% url 'accountApp:register_user' %}">Inscription</a> 
+        </p>
+    {% endif %}
+
     <div class="tableau_meuble">
 
         <table>

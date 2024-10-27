@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'meubleApp',
+    'accountApp',
 ]
 
 MIDDLEWARE = [
@@ -84,12 +85,13 @@ WSGI_APPLICATION = 'MadoProject.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'OPTIONS':{ 'options': '-c search_path=madoschema' },
+            'OPTIONS':{ 'options': '-c search_path=madoschema,public' },
             'NAME': 'djangoDB',
             'USER': 'postgres',
             'PASSWORD': 'louisc28',
             'HOST': 'localhost',
             'PORT': '5432',
+            "TEST": {"NAME": "test_djangoDB"}
     }
 }
 # Ne pas oublier de faire un GRANT ALL ON SCHEMA madoSchema TO postgres; sur Postgres
@@ -134,6 +136,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'MadoProject/static/'),
     os.path.join(BASE_DIR, 'meubleApp/static/'),
+    os.path.join(BASE_DIR, 'accountApp/static/'),
 ]
 
 
@@ -141,3 +144,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# LOGIN_URL = "account/login"
