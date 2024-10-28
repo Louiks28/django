@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barre de Navigation</title>
+    <!-- logo menu déroulant -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <!-- font Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- css perso -->
+    <link rel="stylesheet" href="{% static 'FabiApp/css/navbar.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="{% url 'FabiApp:accueil_FabiRestore' %}">
+                    <img class="logo_fabi_restore" src="{% static 'FabiApp/img/logo_fabi_restore_white.png' %}" alt="FabiRestore">
+                </a>
+            </div>
+            <ul class="links">
+                <li><a href="#">A propos</a></li>
+                <li><a href="#">Adoptez un meuble</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="menu_deroulant_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+
+        <div class="menu_deroulant">
+            <ul class="links">
+                <li><a href="#">A propos</a></li>
+                <li><a href="#">Adoptez un meuble</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+    <script>
+        const MenuDeroulantButton = document.querySelector('.menu_deroulant_btn')
+        const MenuDeroulantButtonIcon = document.querySelector('.fa-solid.fa-bars')
+        const MenuDeroulant = document.querySelector('.menu_deroulant')
+
+        MenuDeroulantButton.onclick = function(){
+            MenuDeroulant.classList.toggle('open')
+            const isOpen = MenuDeroulant.classList.contains('open')
+            MenuDeroulantButtonIcon.classList = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'
+        }
+    </script>
+</body>
+
+</html>

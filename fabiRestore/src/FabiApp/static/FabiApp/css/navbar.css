@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  
+}
+
+
+body {
+    height: 100vh;
+    background-image: url('https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-position: center;
+}
+
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+
+a:hover {
+    color: rgb(218, 217, 217);
+}
+
+li {
+    list-style: none;
+}
+
+header {
+    position: relative;
+    padding: 0 2rem;
+    background-color: rgba(0, 0, 0, 0.712);
+}
+
+.navbar {
+    width: 100%;
+    max-width: 1000px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+/* .navbar .logo a {
+    font-size: 1.5rem;
+    font-weight: bold; 
+} */
+
+.navbar .logo_fabi_restore {
+    width : 90px;
+    height : 90px
+}
+
+.navbar .links {
+    display: flex;
+    gap: 5rem;
+    margin: 0 2rem;
+}
+
+.navbar .menu_deroulant_btn {
+    display: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* MENU DEROULANT */
+.menu_deroulant {
+    display: none;
+    height: 0;
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    width: 190px;
+    background-color: rgba(0, 0, 0, 0.141);
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    border-radius: 10px;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu_deroulant li {
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu_deroulant.open {
+    height: 145px;
+}
+
+
+
+/* ----- RESPONSIVE ----- */
+
+@media (max-width: 800px){
+    header {
+        background: none;
+    }
+
+    .navbar .links {
+        display: none;
+    }
+
+    .navbar .menu_deroulant_btn {
+        display: block;
+    }
+
+    .menu_deroulant{
+        display: block;
+ 
+    }   
+
+}
+
+@media (max-width: 500px){
+ 
+    .menu_deroulant{
+        left: 2rem;
+        width: unset;
+    }   
+
+}
