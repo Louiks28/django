@@ -9,7 +9,8 @@
 
 body {
     height: 100vh;
-    background-image: url('https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    /* background-image: url('https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); */
+    background-color: rgb(255, 255, 255);
     background-size: cover;
     background-position: center;
 }
@@ -32,7 +33,7 @@ li {
 header {
     position: relative;
     padding: 0 2rem;
-    background-color: rgba(0, 0, 0, 0.712);
+    background-color: rgba(21, 20, 44, 0.856);
 }
 
 .navbar {
@@ -45,11 +46,6 @@ header {
     justify-content: space-between;
 
 }
-
-/* .navbar .logo a {
-    font-size: 1.5rem;
-    font-weight: bold; 
-} */
 
 .navbar .logo_fabi_restore {
     width : 90px;
@@ -69,15 +65,16 @@ header {
     cursor: pointer;
 }
 
-/* MENU DEROULANT */
+/* ----- MENU DEROULANT ----- */
 .menu_deroulant {
     display: none;
     height: 0;
     position: absolute;
+    margin-top: 35px;
     right: 2rem;
     top: 60px;
     width: 190px;
-    background-color: rgba(0, 0, 0, 0.141);
+    background-color: rgba(5, 4, 32, 0.712);
     backdrop-filter: blur(15px);
     overflow: hidden;
     border-radius: 10px;
@@ -96,13 +93,8 @@ header {
 }
 
 
-
 /* ----- RESPONSIVE ----- */
-
 @media (max-width: 800px){
-    header {
-        background: none;
-    }
 
     .navbar .links {
         display: none;
@@ -114,16 +106,19 @@ header {
 
     .menu_deroulant{
         display: block;
- 
     }   
-
 }
 
 @media (max-width: 500px){
- 
+
     .menu_deroulant{
         left: 2rem;
         width: unset;
-    }   
-
+    }
 }
+
+/* Décallage vers le bas à l'ouverture du menu déroulant */
+.shift-down {
+    margin-bottom: 145px;
+}
+

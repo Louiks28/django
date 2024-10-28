@@ -1,0 +1,28 @@
+/* ----- ACCUEIL ----- */
+
+.section_haut_accueil {
+    display: flex;
+    /* margin: auto; */
+    position: relative;
+    width: 100%;
+}
+
+.section_haut_accueil img {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.section_haut_accueil h1 {
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    bottom: 0;
+    padding: 8px ;
+    background-color: rgba(5, 4, 32, 0.712);
+    color: white;
+    font-weight: 300;
+    font-size: x-large;
+}
+
