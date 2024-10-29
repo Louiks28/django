@@ -15,3 +15,18 @@
     color: rgb(5, 4, 32);
 }
 
+.gallerie {
+    max-width: 1400px;
+    display: flex;
+    align-items: space;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+
+.mado_image {
+    max-height: 400px;
+    max-width: 400px;
+    margin: 10px;
+}
