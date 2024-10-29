@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show page</title>
+    <!-- css perso -->
+    <link rel="stylesheet" href="{% static 'FabiApp/css/show.css' %}">
+</head>
+<body>
+
+    {% include './navbar.html' %}
+    <div class="meuble">
+        <h1> {{ meuble.titre }} </h1>
+        <p> Prix : {{ meuble.prix }} </p>
+        <p> Réalisation : {{ meuble.date|date:"F Y"}} </p>
+        <p> Longueur : {{ meuble.longueur }} cm</p>
+        <p> Profondeur : {{ meuble.profondeur }} cm</p>
+        <p> Hauteur : {{ meuble.hauteur }} cm</p>
+        <p> Couleurs : {{ meuble.couleurs }}</p>
+        <p> Description : {{ meuble.description }}</p>
+    
+        <p><a href="{% url 'FabiApp:vitrine_FabiRestore' %}">&laquo; Revenir à la liste de meubles </a></p>
+ 
+    </div>
+    
+    {% include './footer.html' %}
+    
+</body>
+</html>

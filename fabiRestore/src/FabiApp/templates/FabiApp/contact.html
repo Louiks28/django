@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de contact</title>
+    <!-- font Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- css perso -->
+    <link rel="stylesheet" href="{% static 'FabiApp/css/contact.css' %}">
+</head>
+<body>
+    {% include './navbar.html' %}
+
+    <h1>CONTACTER FABI RESTORE</h1>
+    <div class="carte-contact">
+        <div class="telephone">
+            <a href="#">
+                <img class="logo" src="{% static 'FabiApp/img/picto-tel.png' %}" alt="picto telephone blanc transparent">
+            </a>
+            <p>+33 6.95.41.22.17</p>
+        </div>
+        <div class="email">
+            <a href="#">
+                <img class="logo" src="{% static 'FabiApp/img/picto-email.png' %}" alt="picto email blanc transparent">
+            </a>
+            <p>jean.paul@hotmail.fr</p>
+        </div>
+        <div class="facebook">
+            <a href="#">
+                <img class="logo" src="{% static 'FabiApp/img/picto-fb.png' %}" alt="picto facebook blanc transparent">
+            </a>
+            <p>nom facebook</p>
+        </div>
+    </div>
+
+    {% include './footer.html' %}
+</body>
+</html>

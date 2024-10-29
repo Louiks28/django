@@ -2,7 +2,7 @@
 
 .section_haut_accueil {
     display: flex;
-    /* margin: auto; */
+    margin-top: 100px;
     position: relative;
     width: 100%;
 }
@@ -20,9 +20,28 @@
     width: 100%;
     bottom: 0;
     padding: 8px ;
-    background-color: rgba(5, 4, 32, 0.712);
+    background-color: rgba(5, 4, 32, 0.801);
     color: white;
     font-weight: 300;
     font-size: x-large;
 }
 
+.eco-responsable {
+    flex-direction: column;
+    padding: 5rem;
+    margin: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eco-responsable h1 {
+    margin-bottom: 3rem;
+
+}
+
+.eco-responsable article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

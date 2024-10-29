@@ -1,0 +1,17 @@
+.meuble {
+    flex-direction: column;
+    margin-top: 150px;
+    margin-bottom: 5rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.meuble p {
+    margin: 1rem 20rem;
+}
+
+.meuble a {
+    color: rgb(5, 4, 32);
+}
+

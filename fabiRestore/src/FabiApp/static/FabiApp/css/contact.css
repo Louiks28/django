@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  
+}
+
+.carte-contact {
+    background-color: rgb(5, 4, 32);
+    color: white;
+    flex-direction: line;
+    padding: 5rem;
+    margin: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25rem;  /*pour que le footer colle en bas */
+}
+
+.carte-contact p {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    margin-top: 150px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+a {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.carte-contact telephone {
+    flex-direction: column;
+}
+
+.carte-contact email {
+    flex-direction: column;
+}
+
+.carte-contact facebook {
+    flex-direction: column;
+}
+
+.facebook .logo {
+    width : 50px;
+    height : 50px;
+}
+

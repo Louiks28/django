@@ -1,0 +1,22 @@
+.histoire_mado {
+    margin: 5rem;
+    padding: 5rem;
+    background-color: rgba(5, 4, 32, 0.904);
+    margin-top: 200px;
+}
+
+.renovation_mado {
+    position: relative;
+    margin: 5rem;
+    padding: 5rem;
+    background-color: rgba(5, 4, 32, 0.904);
+}
+
+h1 {
+    color: white;
+}
+
+p {
+    margin-top: 10px;
+    color: white;
+}

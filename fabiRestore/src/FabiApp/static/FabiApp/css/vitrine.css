@@ -1,0 +1,36 @@
+.titre {
+    margin-top: 150px;
+    margin-bottom: 5rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.selection {
+    border-top: solid black;
+    margin-top: 5rem;
+    padding: 30px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.vitrine {
+    border-top: solid black;
+    padding-top: 5rem;
+    margin-bottom: 20rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+
+td,th {
+    border: 1px solid rgb(214, 214, 214);
+    padding: 15px;
+    font-size: 120%;
+}
+
+.vitrine a {
+    color: rgb(5, 4, 32);
+}

@@ -15,9 +15,18 @@
     {% include './navbar.html' %}
 
     <div class="section_haut_accueil">
-        <img src="https://lilibroc.fr/wp-content/uploads/2023/08/bandeau-accueil-lilibroc-1536x513.jpg" alt="4 photos de meubles">
+         <img src="{% static 'FabiApp/img/accueil_fabiRestore.png' %}" alt="4 photos de meubles">
         <h1> Rénovation de meubles Mado </h1>
     </div>
+
+    <div class="eco-responsable">
+        <h1> La seconde main, une démarche éco-responsable et des coûts réduits </h1>
+        <p class="article">
+            blabla sur la rennovation des meubles + images avant-après
+        </p>
+    </div>
+
+    {% include './footer.html' %}
 
 </body>
 

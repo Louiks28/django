@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer</title>
+    <link rel="stylesheet" href="{% static 'FabiApp/css/footer.css' %}">
+</head>
+<body>
+    <div class="footerFabi">
+        <div class="logo">
+            <a href="{% url 'FabiApp:accueil_FabiRestore' %}">
+                <img class="logo_fabi_restore" src="{% static 'FabiApp/img/logo_fabi_restore_white.png' %}" alt="FabiRestore">
+            </a>
+        </div>
+
+       <div class="navigation">
+            Navigation
+       </div>
+
+       <div class="contact">
+            Contact
+       </div>
+       
+       <div class="Croquis">
+            Croquis crayon de papier
+       </div>
+    
+    </div>
+
+    <div class="copyright">
+        2024 ©FabiRestore  Tous droits réservés. Mention légales
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page À propos</title>
+    <link rel="stylesheet" href="{% static 'FabiApp/css/apropos.css' %}">
+</head>
+<body>
+    
+    {% include './navbar.html' %}
+
+    <div class="histoire_mado">
+        <h1>Les meubles Mado</h1>
+        <p>
+            Le buffet Mado est un meuble de rangement très prisé dans les années 40 et 50. 
+            Depuis sa création, ce vaisselier connaît un vif succès. 
+            En effet, toutes les familles l’adoptaient pour décorer leur cuisine ou leur salle à manger. 
+            On le retrouve d’ailleurs toujours à chaque visite chez les grands-parents. 
+            Étant un meuble tendance, son achat représentait un gros investissement. 
+            Toutefois, même à la sortie de la Seconde Guerre mondiale, le prix ne constituait pas un grand frein à son acquisition. 
+            Les ménages optaient même pour un prêt bancaire ou une facilité de paiement afin d’en posséder dans leur maison. <br>
+            Concernant son étymologie, il faut savoir qu’il existe plusieurs hypothèses qui tournent l’origine de son nom. 
+            Néanmoins, les plus courantes expliquent qu’il s’agit du diminutif de « Maison Dominique ». 
+            La Maison Dominique étant le nom d’un ébéniste français qui a lancé la fabrication d’une série de buffets de cuisine.
+        </p>
+    </div>
+    <div class="renovation_mado">
+        <h1>La rénovation des meubles Mado</h1>
+        <p>
+            blabla la restauration des meubles...
+        </p>
+    </div>
+
+    {% include './footer.html' %}
+
+</body>
+</html>

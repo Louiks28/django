@@ -1,0 +1,36 @@
+.footerFabi {
+    padding: 20px;
+    width: 100%;
+    background-color: rgb(5, 4, 32);
+    color: white;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    position: relative;
+}
+
+.footerFabi ul {
+    display: flex;
+    gap: 5rem;
+    margin: 0 2rem;
+}
+
+.footerFabi .logo_fabi_restore {
+    width : 90px;
+    height : 90px;
+    margin-left: 5rem;
+}
+
+.footerFabi .Croquis {
+    margin-right: 5rem;
+}
+
+.copyright {
+    padding: 10px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}

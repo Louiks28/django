@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitrine des meubles vendus et en vente</title>
+     <!-- css perso -->
+     <link rel="stylesheet" href="{% static 'FabiApp/css/vitrine.css' %}">
+</head>
+<body>
+
+    {% include './navbar.html' %}
+
+    <div class="titre">
+        <h1>Les meubles rénovés</h1>
+    </div>
+    <div class="selection">
+        <p>Sélection de la disponibilité (Voir Tout, Disponible, Déjà Vendu)</p>
+    </div>
+    <div class="vitrine">
+  
+        <table>
+            <caption>Liste des meubles</caption>
+            <tr>
+                <th>Nom du meuble</th>
+                <th>Prix</th>
+                <th>Date</th>
+            </tr>
+
+            {% for m in meubles %}
+            
+                <tr>
+                    <td> 
+                        <a href="{% url 'FabiApp:show_FabiRestore' m.id %}">
+                            {{ m.titre }} 
+                        </a>
+                    </td>
+                    <td> {{ m.prix | floatformat:1 }} € </td>
+                    <td> {{ m.date }} </td>
+                </tr>
+
+            {% endfor %}
+            
+        </table>
+
+    </div>
+
+    {% include './footer.html' %}
+
+</body>
+</html>
