@@ -19,14 +19,65 @@
     </div>
 
     <div class="gallerie">
-        <div class="photo"> <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> </div>
-        <div class="photo"> <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> </div>
-        <div class="photo"> <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> </div>
-        <div class="photo"> <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> </div>
-        <div class="photo"> <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> </div>
-        <div class="photo"> <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> </div>
-       
+        <div class="photo"> 
+            <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> 
+        </div>
+        <div class="photo"> 
+            <img class="mado_image" src="{% static 'FabiApp/img/mado_image2.jpg' %}" alt="image mado random"> 
+        </div>
+        <div class="photo"> 
+            <img class="mado_image" src="{% static 'FabiApp/img/mado_image3.jpg' %}" alt="image mado random"> 
+        </div>
+        <div class="photo"> 
+            <img class="mado_image" src="{% static 'FabiApp/img/mado_image4.jpeg' %}" alt="image mado random"> 
+        </div>
+        <div class="photo"> 
+            <img class="mado_image" src="{% static 'FabiApp/img/mado_image5.jpg' %}" alt="image mado random"> 
+        </div>
+        <div class="photo"> 
+            <img class="mado_image" src="{% static 'FabiApp/img/mado_image6.jpeg' %}" alt="image mado random"> 
+        </div>
     </div>
+
+
+    <!-- <div class="gallerie">
+        <div class="photo"> 
+            <div class="image-container">
+                <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> 
+                <img class="eye-icon" src="{% static 'FabiApp/img/eye-icon.png' %}" alt="eye icon">
+            </div>
+        </div>
+        <div class="photo"> 
+            <div class="image-container">
+                <img class="mado_image" src="{% static 'FabiApp/img/mado_image2.jpg' %}" alt="image mado random"> 
+                <img class="eye-icon" src="{% static 'FabiApp/img/eye-icon.png' %}" alt="eye icon">
+            </div>
+        </div>
+        <div class="photo"> 
+            <div class="image-container">
+                <img class="mado_image" src="{% static 'FabiApp/img/mado_image3.jpg' %}" alt="image mado random"> 
+                <img class="eye-icon" src="{% static 'FabiApp/img/eye-icon.png' %}" alt="eye icon">
+            </div>
+        </div>
+        <div class="photo"> 
+            <div class="image-container">
+                <img class="mado_image" src="{% static 'FabiApp/img/mado_image4.jpeg' %}" alt="image mado random"> 
+                <img class="eye-icon" src="{% static 'FabiApp/img/eye-icon.png' %}" alt="eye icon">
+            </div>
+        </div>
+        <div class="photo"> 
+            <div class="image-container">
+                <img class="mado_image" src="{% static 'FabiApp/img/mado_image5.jpg' %}" alt="image mado random"> 
+                <img class="eye-icon" src="{% static 'FabiApp/img/eye-icon.png' %}" alt="eye icon">
+            </div>
+        </div>
+        <div class="photo"> 
+            <div class="image-container">
+                <img class="mado_image" src="{% static 'FabiApp/img/mado_image6.jpeg' %}" alt="image mado random"> 
+                <img class="eye-icon" src="{% static 'FabiApp/img/eye-icon.png' %}" alt="eye icon">
+            </div>
+        </div>
+    </div> -->
 
     <div class="partie_sous_gallerie">
 
@@ -39,20 +90,45 @@
             <h1>Prix</h1>
                 <p>{{ meuble.prix }} €</p>
             <h1>Transport</h1>
-                <p>blabla modalités sur le transport</p> 
+                <p>blabla modalités sur le transport Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum modi illo corrupti dolores rerum. Distinctio, in excepturi? At minus, qui natus fuga eaque, ullam provident vero odio sequi officiis delectus.</p> 
         </div>
 
         <div class="message_statut">
-            <p>message par rapport au statut (Disponible ou Vendu)</p>
+            {% if meuble.statut == 'Vendu' %}
+                <div class="meuble-deja-vendu">
+                    <img class="deja-vendu-image" src="{% static 'FabiApp/img/deja-vendu-icon.png' %}" alt="image statut deja vendu">
+                    <p>Envie d'un meuble dans le même style ?</p>
+                    <button>Contacter Fabi Restore</button>
+                    <a href="{% url 'FabiApp:vitrine_FabiRestore' %}">&laquo; Continuer ma visite </a>
+                </div>
+                
+            {% elif meuble.statut == 'Disponible' %}
+                <div class="meuble-disponible">
+                    <img class="dispo-image" src="{% static 'FabiApp/img/dispo-icon.png' %}" alt="image statut disponible">
+                    <p>Des questions sur le meuble ? Vous avez le coup de foudre ?</p>
+                    <button>Contacter Fabi Restore</button>
+                    <a href="{% url 'FabiApp:vitrine_FabiRestore' %}">&laquo; Continuer ma visite </a>
+                </div>
+            {% endif %}"
         </div>
         
 </div>
 
-    <div class="retour_vitrine">
-        <a href="{% url 'FabiApp:vitrine_FabiRestore' %}">&laquo; Revenir à la liste de meubles </a>
+    <!-- Conteneur pour l'image agrandie -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-image" src="" alt="">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="lightbox-caption">
+            <div class="lightbox-title">{{ meuble.titre }}</div>
+            <div class="lightbox-counter">1/{{ images|length }}</div>
+        </div>
     </div>
 
     {% include './footer.html' %}
+
+    <script src="{% static 'FabiApp/js/show.js' %}"></script>
     
 </body>
 </html>
