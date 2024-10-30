@@ -21,7 +21,7 @@
     </div>
     <div class="vitrine">
   
-        <table>
+        <!-- <table>
             <caption>Liste des meubles</caption>
             <tr>
                 <th>Nom du meuble</th>
@@ -43,7 +43,20 @@
 
             {% endfor %}
             
-        </table>
+        </table> -->
+
+        {% for m in meubles %}
+            <div class="photo">
+                <a href="{% url 'FabiApp:show_FabiRestore' m.id %}">
+                    <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random">
+                    <div class="légende_img">
+                        <span class="titre_img">{{ m.titre }}</span>
+                        <span class="{% if m.statut == 'Vendu' %}vendu{% elif m.statut == 'Disponible' %}disponible{% endif %}">{{ m.statut }}</span>
+                    </div>
+                </a>
+
+            </div>
+        {% endfor %}
 
     </div>
 

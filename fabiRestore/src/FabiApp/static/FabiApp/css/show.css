@@ -1,20 +1,28 @@
-.meuble {
+h1 {
+    margin: 20px 50px 10px 50px ;  /*top, right, bottom, left */
+}
+
+p {
+    margin: 0 50px 10px 50px ;  /*top, right, bottom, left */
+}
+
+
+/* --- DESCRIPTION MEUBLE AVANT PHOTOS --- */
+.meuble_partie_haute {
     flex-direction: column;
-    margin-top: 150px;
-    margin-bottom: 5rem;
     align-items: center;
     justify-content: center;
     display: flex;
+    max-width: 1000px;
+    margin: 150px auto 5rem auto;
 }
 
-.meuble p {
-    margin: 1rem 20rem;
-}
-
-.meuble a {
+.meuble_partie_haute a {
     color: rgb(5, 4, 32);
 }
 
+
+/* --- GALLERIE --- */
 .gallerie {
     max-width: 1400px;
     display: flex;
@@ -24,9 +32,46 @@
     margin: 0 auto;
 }
 
-
 .mado_image {
     max-height: 400px;
     max-width: 400px;
     margin: 10px;
+}
+
+
+/* --- DESCRIPTION MEUBLE APRÈS PHOTOS --- */
+
+.partie_sous_gallerie {
+    flex-direction: row;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.meuble_partie_basse {
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    display: flex;
+    max-width: 1000px;
+    margin: 2rem auto 5rem auto;
+}
+
+.meuble_partie_basse a {
+    color: rgb(5, 4, 32);
+}
+
+.retour_vitrine {
+    margin-top: 20px;
+    margin-bottom: 100px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.retour_vitrine a{
+    color: black;
 }

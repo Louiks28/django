@@ -12,18 +12,10 @@
 <body>
 
     {% include './navbar.html' %}
-    <div class="meuble">
+    <div class="meuble_partie_haute">
         <h1> {{ meuble.titre }} </h1>
-        <p> Prix : {{ meuble.prix }} </p>
-        <p> Réalisation : {{ meuble.date|date:"F Y"}} </p>
-        <p> Longueur : {{ meuble.longueur }} cm</p>
-        <p> Profondeur : {{ meuble.profondeur }} cm</p>
-        <p> Hauteur : {{ meuble.hauteur }} cm</p>
-        <p> Couleurs : {{ meuble.couleurs }}</p>
         <p> Description : {{ meuble.description }}</p>
-    
-        <p><a href="{% url 'FabiApp:vitrine_FabiRestore' %}">&laquo; Revenir à la liste de meubles </a></p>
- 
+        <p> Réalisation : {{ meuble.date|date:"F Y"}} </p>
     </div>
 
     <div class="gallerie">
@@ -35,7 +27,31 @@
         <div class="photo"> <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> </div>
        
     </div>
-    
+
+    <div class="partie_sous_gallerie">
+
+        <div class="meuble_partie_basse">
+            <h1>Dimensions</h1>
+                <p> Longueur : {{ meuble.longueur }} cm</p>
+                <p> Profondeur : {{ meuble.profondeur }} cm</p>
+                <p> Hauteur : {{ meuble.hauteur }} cm</p>
+            <!-- <p> Couleurs : {{ meuble.couleurs }}</p> -->
+            <h1>Prix</h1>
+                <p>{{ meuble.prix }} €</p>
+            <h1>Transport</h1>
+                <p>blabla modalités sur le transport</p> 
+        </div>
+
+        <div class="message_statut">
+            <p>message par rapport au statut (Disponible ou Vendu)</p>
+        </div>
+        
+</div>
+
+    <div class="retour_vitrine">
+        <a href="{% url 'FabiApp:vitrine_FabiRestore' %}">&laquo; Revenir à la liste de meubles </a>
+    </div>
+
     {% include './footer.html' %}
     
 </body>
