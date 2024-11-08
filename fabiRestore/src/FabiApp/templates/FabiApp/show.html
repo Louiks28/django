@@ -19,7 +19,19 @@
     </div>
 
     <div class="gallerie">
+
+
         <div class="photo"> 
+            <img class="mado_image" src={{ meuble.photoCouverture.url }} alt="image mado"> 
+        </div>
+
+        {% for p in photos %}
+        <div class="photo"> 
+            <img class="mado_image" src={{ p.image.url }} alt="image mado"> 
+        </div>
+        {% endfor %}
+
+        <!-- <div class="photo"> 
             <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> 
         </div>
         <div class="photo"> 
@@ -36,7 +48,7 @@
         </div>
         <div class="photo"> 
             <img class="mado_image" src="{% static 'FabiApp/img/mado_image6.jpeg' %}" alt="image mado random"> 
-        </div>
+        </div> -->
     </div>
 
 

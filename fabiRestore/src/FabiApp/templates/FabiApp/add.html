@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Add Photo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- css perso -->
+    <link rel="stylesheet" href="{% static 'FabiApp/css/add.css' %}">
+
+    <!-- CSS only
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
+
+</head>
+
+<body>
+
+    {% include './navbar.html' %}
+
+    <div class="add_photos">
+        <div class="add_form">
+           
+            <a href="{% url 'FabiApp:vitrine_FabiRestore' %}" class="btn">&laquo; Revenir à la vitrine</a>
+                
+                <form method='POST' action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form">
+                        <label>Sélectionne un meuble</label>
+                        <select id="meubleSelect" name="meuble" class="form-control">
+                            <option value='none'>Sélectionne un meuble...</option>
+
+                            {% for m in meubles %}
+                            <option value={{m.id}} data-image-url={{m.photoCouverture.url}}>
+                                {{m.titre}} 
+                                
+                            </option>
+                            
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <label>Sélection des images</label>
+                    <input required name="images" type="file" multiple class="form-control-file"> <br>
+                
+                    <button type='submit' class="btn">Valider</button>
+
+                </form>
+            
+        </div>
+        
+        <div class="img_couverture">
+            <img id="coverImage" class="mado_image" src="" alt="image couverture" style="display: none;">
+        </div>
+    </div>
+
+    <!-- JS pour faire apparaitre l'image de couverture quand le meuble est sélectionné-->
+    <script>
+        document.getElementById('meubleSelect').addEventListener('change', function() {
+            var selectedOption = this.options[this.selectedIndex];
+            var imageUrl = selectedOption.getAttribute('data-image-url');
+            var coverImage = document.getElementById('coverImage');
+
+            if (imageUrl) {
+                coverImage.src = imageUrl;
+                coverImage.style.display = 'block';
+            } else {
+                coverImage.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

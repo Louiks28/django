@@ -1,0 +1,74 @@
+.btn {
+    color: black;
+    margin-top: 2rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.add_photos {
+    display: flex;
+    margin-top: 200px;
+    position: relative;
+    width: 100%;
+    align-items: space;
+    justify-content: center;
+}
+
+.add_form {
+    border: black solid;
+    padding: 3rem;
+    flex-direction: column;
+}
+
+.img_couverture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    min-width: 350px;
+    min-height: 350px;
+}
+
+/* Styles pour l'image de couverture */
+.mado_image {
+    display: block;
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+
+
+/* Styles pour le formulaire */
+.form {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+

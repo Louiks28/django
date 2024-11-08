@@ -9,4 +9,5 @@ urlpatterns = [
     path('contact', views.contact, name='contact_FabiRestore'), # /fabirestore/contact
     path('vitrine', views.vitrine, name='vitrine_FabiRestore'), # /fabirestore/vitrine
     path('<int:meuble_id>', views.show, name='show_FabiRestore'), # ex : /fabirestore/1
+    path('addPhotos', views.addPhoto, name='add_photos'), # /fabirestore/addPhoto
 ]

@@ -18,11 +18,41 @@
     display: flex;
 }
 
+button {
+    padding: 15px;
+    flex-direction: row;
+    display: flex;
+    cursor: pointer;
+}
+
+.btn-vitrine2 {
+    margin-left: 1rem;
+}
+
+.btn-effacer {
+    margin-left: 1rem;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+}
+
+.btn-effacer:hover {
+    background-color: rgb(196, 190, 183);
+}
+
+.logo_deroulant {
+    max-width: 15px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 2rem;
+}
 
 /* --- VITRINE --- */
 .vitrine {
     border-top: solid black;
-    padding-top: 5rem;
+    padding-top: 2rem;
     margin-bottom: 20rem;
     margin-left: auto;
     margin-right: auto;
@@ -67,7 +97,8 @@ td,th {
 
 .photo .mado_image{
     max-width: 300px;
-    max-width: 300px;
+    max-height: 300px;
+    
 }
 
 .photo .légende_img {
