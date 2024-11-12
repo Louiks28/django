@@ -8,7 +8,7 @@
 }
 
 
-/* --- MENU DE SELECTION --- */
+/* ------ MENU DE SELECTION ------ */
 .selection {
     border-top: solid black;
     margin-top: 5rem;
@@ -18,41 +18,95 @@
     display: flex;
 }
 
+
 button {
     padding: 15px;
     flex-direction: row;
     display: flex;
     cursor: pointer;
+    justify-content: space-between;
 }
 
+
+/* Les 2 menus déroulants */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    width: 150px;
+}
+
+.dropdown-menu li {
+    padding-left: 1rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.7s;
+}
+
+.dropdown-menu li:hover {
+    background-color: rgb(202, 194, 194);
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+}
+
+.dropdown-menu a:hover {
+    color: black;
+}
+
+.logo_deroulant {
+    max-width: 15px;
+    float: right;
+}
+
+.selected {
+    background-color: rgb(202, 194, 194);
+}
+
+/* Bouton Disponibilité */
 .btn-vitrine2 {
     margin-left: 1rem;
+    width: 150px;
 }
 
+.dropdown_statut {
+    background-color: rgb(255, 255, 255);
+    margin-left: 1rem;
+    width: 150px;
+    border: 1px solid #e2e2e2;
+}
+
+/* Bouton Catégories */
+.btn-vitrine1{
+    width: 150px;
+}
+
+.dropdown_categorie{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #e2e2e2;
+    width: 150px;
+}
+
+/* Bouton Effacer */
 .btn-effacer {
     margin-left: 1rem;
     padding: 10px;
-    border: none;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .btn-effacer:hover {
     background-color: rgb(196, 190, 183);
 }
 
-.logo_deroulant {
-    max-width: 15px;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    margin-left: 2rem;
-}
 
-/* --- VITRINE --- */
+/* ------ VITRINE ------ */
 .vitrine {
-    border-top: solid black;
-    padding-top: 2rem;
+    /* border-top: solid black; */
+    padding-top: 1rem;
     margin-bottom: 20rem;
     margin-left: auto;
     margin-right: auto;
@@ -96,9 +150,9 @@ td,th {
 }
 
 .photo .mado_image{
-    max-width: 300px;
-    max-height: 300px;
-    
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 10px;
 }
 
 .photo .légende_img {

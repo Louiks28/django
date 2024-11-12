@@ -14,7 +14,13 @@ def contact(request):
     return render(request, 'FabiApp/contact.html')
 
 def vitrine(request):
-    context = {"meubles" : Meuble.objects.all().order_by('-date')}
+    context = {
+        "meubles" : Meuble.objects.all().order_by('-date'),
+        "categories" : Meuble.objects.values_list('categorie', flat=True).distinct(),
+        "statuts" : Meuble.objects.values_list('statut', flat=True).distinct(),
+    }
+        
+
     return render(request, 'FabiApp/vitrine.html', context)
 
 def show(request, meuble_id):

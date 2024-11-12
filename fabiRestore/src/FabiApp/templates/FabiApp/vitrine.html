@@ -20,49 +20,55 @@
         <h1>Les meubles rénovés</h1>
     </div>
     <div class="selection">
-        <button class="btn-vitrine1">
-            Catégories 
-            <img class="logo_deroulant" src="{% static 'FabiApp/img/dropdown-icon.png' %}" alt="menu deroulant icon">
-        </button>
-        <button class="btn-vitrine2">
-            Disponibilité
-            <img class="logo_deroulant" src="{% static 'FabiApp/img/dropdown-icon.png' %}" alt="menu deroulant icon">
-        </button>
+     
+        <div class="dropdown">
+            <button class="btn-vitrine1 dropdown-toggle">
+                Catégories
+                <img class="logo_deroulant" src="{% static 'FabiApp/img/dropdown-icon.png' %}" alt="menu deroulant icon">
+            </button>
+            <div class="dropdown-menu">
+                <ul class="dropdown_categorie">
+                    <li class="tout_voir"> 
+                        <a href="#">Voir tout</a>
+                    </li>
+                    {% for categorie in categories %}
+                        <li>
+                            <a href="#">{{ categorie }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn-vitrine2 dropdown-toggle">
+                Disponibilité
+                <img class="logo_deroulant" src="{% static 'FabiApp/img/dropdown-icon.png' %}" alt="menu deroulant icon">
+            </button>
+            <div class="dropdown-menu">
+                <ul class="dropdown_statut">
+                    <li class="tout_voir"> 
+                        <a href="#">Voir tout</a>
+                    </li>
+                    {% for statut in statuts %}
+                        <li> 
+                            <a href="#">{{ statut }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
         <button class="btn-effacer">
             Effacer la sélection
         </button>
     </div>
     <div class="vitrine">
-  
-        <!-- <table>
-            <caption>Liste des meubles</caption>
-            <tr>
-                <th>Nom du meuble</th>
-                <th>Prix</th>
-                <th>Date</th>
-            </tr>
-
-            {% for m in meubles %}
-            
-                <tr>
-                    <td> 
-                        <a href="{% url 'FabiApp:show_FabiRestore' m.id %}">
-                            {{ m.titre }} 
-                        </a>
-                    </td>
-                    <td> {{ m.prix | floatformat:1 }} € </td>
-                    <td> {{ m.date }} </td>
-                </tr>
-
-            {% endfor %}
-            
-        </table> -->
 
         {% for m in meubles %}
             <div class="photo">
                 <a href="{% url 'FabiApp:show_FabiRestore' m.id %}">
-                    <!-- <img class="mado_image" src="{% static 'FabiApp/img/mado_image.jpg' %}" alt="image mado random"> -->
-                    <img class="mado_image" src={{ m.photoCouverture.url }} alt="image couverture">
+                    <img class="mado_image" src="{{ m.photoCouverture.url }}" alt="image couverture">
                     <div class="légende_img">
                         <span class="titre_img">{{ m.titre }}</span>
                         <span class="{% if m.statut == 'Vendu' %}vendu{% elif m.statut == 'Disponible' %}disponible{% endif %}">{{ m.statut }}</span>
@@ -77,7 +83,151 @@
     {% include './footer.html' %}
 
 
+    <script>
 
+            // Ouvertre et Fermeture Menu déroulant
+        document.querySelectorAll('.dropdown-toggle').forEach(button => {
+            button.addEventListener('click', function() {
+
+                // Close all open dropdown menus
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    if (menu !== this.nextElementSibling) {
+                        menu.style.display = 'none';
+                        const icon = menu.previousElementSibling.querySelector('.logo_deroulant');
+                        icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+                    }
+                });
+
+                const dropdownMenu = this.nextElementSibling;
+                const icon = this.querySelector('.logo_deroulant');
+
+                if (dropdownMenu.style.display === 'block') {
+                    dropdownMenu.style.display = 'none';
+                    icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+                } else {
+                    dropdownMenu.style.display = 'block';
+                    icon.src = "{% static 'FabiApp/img/up-arrow.png' %}";
+                }
+            });
+        });
+
+
+        // Un clic a l'extérieur et le menu ferme
+        document.addEventListener('click', function(event) {
+
+        if (!event.target.closest('.btn-effacer')) {
+            const isClickInsideDropdown = event.target.closest('.dropdown');
+            if (!isClickInsideDropdown) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.style.display = 'none';
+                    const icon = menu.previousElementSibling.querySelector('.logo_deroulant');
+                    icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+                });
+            }
+        }
+        });
+
+
+        // Li cliqué --> apparait sur le bouton
+        document.querySelectorAll('.dropdown-menu li:not(.tout_voir)').forEach(li => {
+            li.addEventListener('click', function() {
+                // Supprimez la classe 'selected' de tous les éléments li dans le dropdown-menu
+                this.closest('.dropdown-menu').querySelectorAll('li').forEach(li => {
+                    li.classList.remove('selected');
+                });
+
+                // Ajoutez la classe 'selected' à l'élément li cliqué
+                this.classList.add('selected');
+
+                // Mettez à jour le texte du bouton avec le texte de l'élément li cliqué
+                const buttonText = this.closest('.dropdown').querySelector('.dropdown-toggle');
+                const buttonTextNode = buttonText.childNodes[0]; // Get the text node
+                buttonTextNode.textContent = this.textContent; // Update the text node
+
+                // Mettez à jour le src de l'élément img avec l'image de l'icône de déroulement
+                const icon = this.closest('.dropdown').querySelector('.logo_deroulant');
+                icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+
+                // Fermez le dropdown-menu
+                const dropdownMenu = this.closest('.dropdown-menu');
+                dropdownMenu.style.display = 'none';
+            
+            });
+        });
+
+
+        // Bouton pour effacer la sélection
+        document.querySelector('.btn-effacer').addEventListener('click', function() {
+            // Supprimez la classe 'selected' de tous les éléments li dans le dropdown-menu
+            document.querySelectorAll('.dropdown-menu li').forEach(li => {
+                li.classList.remove('selected');
+            });
+
+
+            // Réinitialisez l'état du menu déroulant
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.style.display = 'none';
+            });
+            document.querySelectorAll('.dropdown-toggle .logo_deroulant').forEach(icon => {
+                icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+            });
+
+            // Rétablissez le texte du bouton à "Disponibilité" avec l'icône de déroulement
+            const buttonVitrine2 = document.querySelector('.btn-vitrine2');
+          
+            // const iconVitrine2 = buttonVitrine2.querySelector('.logo_deroulant');
+            buttonVitrine2.childNodes[0].textContent = "Disponibilité";
+            
+            // Rétablissez le texte du bouton à "Catégories" avec l'icône de déroulement
+            const buttonVitrine1 = document.querySelector('.btn-vitrine1');
+            const iconVitrine1 = buttonVitrine1.getElementsByClassName('logo_deroulant')[0];
+
+            buttonVitrine1.childNodes[0].textContent = "Catégories";
+
+        });
+
+        //bouton tout voir à gérer
+        //clic li --> les bons meubles à afficher
+        //clic effacer --> afficher tout
+        //clic tout voir --> afficher tout
+        // 2 idees : nouvelles vues qui renvoie sur notre url avec les bons meubles
+        // en dynamique dans notre html ??
+
+
+        // // On surveille les li cliqués
+        // document.querySelectorAll('.dropdown-menu li:not(.tout_voir)').forEach(li => {
+        //     li.addEventListener('click', function() {
+        //         // Ajoutez ou supprimez la classe 'selected' de l'élément li cliqué
+        //         this.classList.toggle('selected');
+        //         // Fermez le dropdown-menu
+        //         const dropdownMenu = this.closest('.dropdown-menu');
+        //         dropdownMenu.style.display = 'none';
+        //     });
+        // });
+
+        // // Bouton tout_voir
+        // document.querySelector('.dropdown_categorie .tout_voir').addEventListener('click', function() {
+        //     // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
+        //     this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
+        //         li.classList.add('selected');
+        //     });
+        //     // Fermez le dropdown-menu
+        //     const dropdownMenu = this.closest('.dropdown-menu');
+        //     dropdownMenu.style.display = 'none';
+        // });
+
+        // // Bouton tout_voir
+        // document.querySelector('.dropdown_statut .tout_voir').addEventListener('click', function() {
+        //     // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
+        //     this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
+        //         li.classList.add('selected'); 
+        //     });
+        //     // Fermez le dropdown-menu
+        //     const dropdownMenu = this.closest('.dropdown-menu');
+        //     dropdownMenu.style.display = 'none';
+        // });
+
+    </script>
 
 </body>
 </html>
