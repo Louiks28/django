@@ -172,16 +172,11 @@
                 icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
             });
 
-            // Rétablissez le texte du bouton à "Disponibilité" avec l'icône de déroulement
+            // Rétablir le texte initial des boutons
             const buttonVitrine2 = document.querySelector('.btn-vitrine2');
-          
-            // const iconVitrine2 = buttonVitrine2.querySelector('.logo_deroulant');
             buttonVitrine2.childNodes[0].textContent = "Disponibilité";
             
-            // Rétablissez le texte du bouton à "Catégories" avec l'icône de déroulement
             const buttonVitrine1 = document.querySelector('.btn-vitrine1');
-            const iconVitrine1 = buttonVitrine1.getElementsByClassName('logo_deroulant')[0];
-
             buttonVitrine1.childNodes[0].textContent = "Catégories";
 
         });
@@ -194,38 +189,46 @@
         // en dynamique dans notre html ??
 
 
-        // // On surveille les li cliqués
-        // document.querySelectorAll('.dropdown-menu li:not(.tout_voir)').forEach(li => {
-        //     li.addEventListener('click', function() {
-        //         // Ajoutez ou supprimez la classe 'selected' de l'élément li cliqué
-        //         this.classList.toggle('selected');
-        //         // Fermez le dropdown-menu
-        //         const dropdownMenu = this.closest('.dropdown-menu');
-        //         dropdownMenu.style.display = 'none';
-        //     });
-        // });
 
-        // // Bouton tout_voir
-        // document.querySelector('.dropdown_categorie .tout_voir').addEventListener('click', function() {
-        //     // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
-        //     this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
-        //         li.classList.add('selected');
-        //     });
-        //     // Fermez le dropdown-menu
-        //     const dropdownMenu = this.closest('.dropdown-menu');
-        //     dropdownMenu.style.display = 'none';
-        // });
+        // Bouton tout_voir Catégories
+        document.querySelector('.dropdown_categorie .tout_voir').addEventListener('click', function() {
+            // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
+            this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
+                li.classList.remove('selected');
+            });
+            // Fermez le dropdown-menu
+            const dropdownMenu = this.closest('.dropdown-menu');
+            dropdownMenu.style.display = 'none';
 
-        // // Bouton tout_voir
-        // document.querySelector('.dropdown_statut .tout_voir').addEventListener('click', function() {
-        //     // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
-        //     this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
-        //         li.classList.add('selected'); 
-        //     });
-        //     // Fermez le dropdown-menu
-        //     const dropdownMenu = this.closest('.dropdown-menu');
-        //     dropdownMenu.style.display = 'none';
-        // });
+            // Rétablir icon dropdown
+            document.querySelectorAll('.btn-vitrine1 .logo_deroulant').forEach(icon => {
+                icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+            });
+
+            // Rétablir le texte initial du bouton
+            const buttonVitrine1 = document.querySelector('.btn-vitrine1');
+            buttonVitrine1.childNodes[0].textContent = "Catégories";
+        });
+
+        // Bouton tout_voir Disponibilité
+        document.querySelector('.dropdown_statut .tout_voir').addEventListener('click', function() {
+            // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
+            this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
+                li.classList.remove('selected'); 
+            });
+            // Fermez le dropdown-menu
+            const dropdownMenu = this.closest('.dropdown-menu');
+            dropdownMenu.style.display = 'none';
+
+            // Rétablir icon dropdown
+            document.querySelectorAll('.btn-vitrine2 .logo_deroulant').forEach(icon => {
+                icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+            });
+
+            // Rétablir le texte initial des boutons
+            const buttonVitrine2 = document.querySelector('.btn-vitrine2');
+            buttonVitrine2.childNodes[0].textContent = "Disponibilité";
+        });
 
     </script>
 
