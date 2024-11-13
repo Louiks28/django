@@ -28,11 +28,11 @@
             </button>
             <div class="dropdown-menu">
                 <ul class="dropdown_categorie">
-                    <li class="tout_voir"> 
+                    <li class="tout_voir" data-filter="all"> 
                         <a href="#">Voir tout</a>
                     </li>
                     {% for categorie in categories %}
-                        <li>
+                        <li data-filter="{{ categorie }}">
                             <a href="#">{{ categorie }}</a>
                         </li>
                     {% endfor %}
@@ -47,11 +47,11 @@
             </button>
             <div class="dropdown-menu">
                 <ul class="dropdown_statut">
-                    <li class="tout_voir"> 
+                    <li class="tout_voir" data-filter="all"> 
                         <a href="#">Voir tout</a>
                     </li>
                     {% for statut in statuts %}
-                        <li> 
+                        <li data-filter="{{ statut }}"> 
                             <a href="#">{{ statut }}</a>
                         </li>
                     {% endfor %}
@@ -80,157 +80,251 @@
 
     </div>
 
+    <div id="loading-icon" style="display: none;">
+        <img src="{% static 'FabiApp/img/loading-gif.gif' %}" alt="Chargement..." />
+    </div>
+
     {% include './footer.html' %}
 
 
     <script>
-
-            // Ouvertre et Fermeture Menu déroulant
-        document.querySelectorAll('.dropdown-toggle').forEach(button => {
-            button.addEventListener('click', function() {
-
-                // Close all open dropdown menus
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    if (menu !== this.nextElementSibling) {
-                        menu.style.display = 'none';
-                        const icon = menu.previousElementSibling.querySelector('.logo_deroulant');
-                        icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
-                    }
-                });
-
-                const dropdownMenu = this.nextElementSibling;
-                const icon = this.querySelector('.logo_deroulant');
-
-                if (dropdownMenu.style.display === 'block') {
-                    dropdownMenu.style.display = 'none';
-                    icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
-                } else {
-                    dropdownMenu.style.display = 'block';
-                    icon.src = "{% static 'FabiApp/img/up-arrow.png' %}";
-                }
-            });
-        });
+        const dropdownIconPath = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+        const upArrowIconPath = "{% static 'FabiApp/img/up-arrow.png' %}";
 
 
-        // Un clic a l'extérieur et le menu ferme
-        document.addEventListener('click', function(event) {
+        // // Ouvertre et Fermeture Menu déroulant
+        // document.querySelectorAll('.dropdown-toggle').forEach(button => {
+        //     button.addEventListener('click', function() {
 
-        if (!event.target.closest('.btn-effacer')) {
-            const isClickInsideDropdown = event.target.closest('.dropdown');
-            if (!isClickInsideDropdown) {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.style.display = 'none';
-                    const icon = menu.previousElementSibling.querySelector('.logo_deroulant');
-                    icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
-                });
-            }
-        }
-        });
+        //         // Close all open dropdown menus
+        //         document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        //             if (menu !== this.nextElementSibling) {
+        //                 menu.style.display = 'none';
+        //                 const icon = menu.previousElementSibling.querySelector('.logo_deroulant');
+        //                 icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+        //             }
+        //         });
+
+        //         const dropdownMenu = this.nextElementSibling;
+        //         const icon = this.querySelector('.logo_deroulant');
+
+        //         if (dropdownMenu.style.display === 'block') {
+        //             dropdownMenu.style.display = 'none';
+        //             icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+        //         } else {
+        //             dropdownMenu.style.display = 'block';
+        //             icon.src = "{% static 'FabiApp/img/up-arrow.png' %}";
+        //         }
+        //     });
+        // });
 
 
-        // Li cliqué --> apparait sur le bouton
-        document.querySelectorAll('.dropdown-menu li:not(.tout_voir)').forEach(li => {
-            li.addEventListener('click', function() {
-                // Supprimez la classe 'selected' de tous les éléments li dans le dropdown-menu
-                this.closest('.dropdown-menu').querySelectorAll('li').forEach(li => {
-                    li.classList.remove('selected');
-                });
+        // // Un clic a l'extérieur et le menu ferme
+        // document.addEventListener('click', function(event) {
 
-                // Ajoutez la classe 'selected' à l'élément li cliqué
-                this.classList.add('selected');
+        // if (!event.target.closest('.btn-effacer')) {
+        //     const isClickInsideDropdown = event.target.closest('.dropdown');
+        //     if (!isClickInsideDropdown) {
+        //         document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        //             menu.style.display = 'none';
+        //             const icon = menu.previousElementSibling.querySelector('.logo_deroulant');
+        //             icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+        //         });
+        //     }
+        // }
+        // });
 
-                // Mettez à jour le texte du bouton avec le texte de l'élément li cliqué
-                const buttonText = this.closest('.dropdown').querySelector('.dropdown-toggle');
-                const buttonTextNode = buttonText.childNodes[0]; // Get the text node
-                buttonTextNode.textContent = this.textContent; // Update the text node
 
-                // Mettez à jour le src de l'élément img avec l'image de l'icône de déroulement
-                const icon = this.closest('.dropdown').querySelector('.logo_deroulant');
-                icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+        // // Li cliqué --> apparait sur le bouton
+        // document.querySelectorAll('.dropdown-menu li:not(.tout_voir)').forEach(li => {
+        //     li.addEventListener('click', function() {
+        //         // Supprimez la classe 'selected' de tous les éléments li dans le dropdown-menu
+        //         this.closest('.dropdown-menu').querySelectorAll('li').forEach(li => {
+        //             li.classList.remove('selected');
+        //         });
 
-                // Fermez le dropdown-menu
-                const dropdownMenu = this.closest('.dropdown-menu');
-                dropdownMenu.style.display = 'none';
+        //         // Ajoutez la classe 'selected' à l'élément li cliqué
+        //         this.classList.add('selected');
+
+        //         // Mettez à jour le texte du bouton avec le texte de l'élément li cliqué
+        //         const buttonText = this.closest('.dropdown').querySelector('.dropdown-toggle');
+        //         const buttonTextNode = buttonText.childNodes[0]; // Get the text node
+        //         buttonTextNode.textContent = this.textContent; // Update the text node
+
+        //         // Mettez à jour le src de l'élément img avec l'image de l'icône de déroulement
+        //         const icon = this.closest('.dropdown').querySelector('.logo_deroulant');
+        //         icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+
+        //         // Fermez le dropdown-menu
+        //         const dropdownMenu = this.closest('.dropdown-menu');
+        //         dropdownMenu.style.display = 'none';
             
-            });
-        });
+        //     });
+        // });
 
 
-        // Bouton pour effacer la sélection
-        document.querySelector('.btn-effacer').addEventListener('click', function() {
-            // Supprimez la classe 'selected' de tous les éléments li dans le dropdown-menu
-            document.querySelectorAll('.dropdown-menu li').forEach(li => {
-                li.classList.remove('selected');
-            });
+        // // Bouton pour effacer la sélection
+        // document.querySelector('.btn-effacer').addEventListener('click', function() {
+        //     // Supprimez la classe 'selected' de tous les éléments li dans le dropdown-menu
+        //     document.querySelectorAll('.dropdown-menu li').forEach(li => {
+        //         li.classList.remove('selected');
+        //     });
 
 
-            // Réinitialisez l'état du menu déroulant
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.style.display = 'none';
-            });
-            document.querySelectorAll('.dropdown-toggle .logo_deroulant').forEach(icon => {
-                icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
-            });
+        //     // Réinitialisez l'état du menu déroulant
+        //     document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        //         menu.style.display = 'none';
+        //     });
+        //     document.querySelectorAll('.dropdown-toggle .logo_deroulant').forEach(icon => {
+        //         icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+        //     });
 
-            // Rétablir le texte initial des boutons
-            const buttonVitrine2 = document.querySelector('.btn-vitrine2');
-            buttonVitrine2.childNodes[0].textContent = "Disponibilité";
+        //     // Rétablir le texte initial des boutons
+        //     const buttonVitrine2 = document.querySelector('.btn-vitrine2');
+        //     buttonVitrine2.childNodes[0].textContent = "Disponibilité";
             
-            const buttonVitrine1 = document.querySelector('.btn-vitrine1');
-            buttonVitrine1.childNodes[0].textContent = "Catégories";
+        //     const buttonVitrine1 = document.querySelector('.btn-vitrine1');
+        //     buttonVitrine1.childNodes[0].textContent = "Catégories";
 
-        });
-
-        //bouton tout voir à gérer
-        //clic li --> les bons meubles à afficher
-        //clic effacer --> afficher tout
-        //clic tout voir --> afficher tout
-        // 2 idees : nouvelles vues qui renvoie sur notre url avec les bons meubles
-        // en dynamique dans notre html ??
+        // });
 
 
+        
+        // // Bouton tout_voir Catégories
+        // document.querySelector('.dropdown_categorie .tout_voir').addEventListener('click', function() {
+        //     // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
+        //     this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
+        //         li.classList.remove('selected');
+        //     });
+        //     // Fermez le dropdown-menu
+        //     const dropdownMenu = this.closest('.dropdown-menu');
+        //     dropdownMenu.style.display = 'none';
 
-        // Bouton tout_voir Catégories
-        document.querySelector('.dropdown_categorie .tout_voir').addEventListener('click', function() {
-            // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
-            this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
-                li.classList.remove('selected');
-            });
-            // Fermez le dropdown-menu
-            const dropdownMenu = this.closest('.dropdown-menu');
-            dropdownMenu.style.display = 'none';
+        //     // Rétablir icon dropdown
+        //     document.querySelectorAll('.btn-vitrine1 .logo_deroulant').forEach(icon => {
+        //         icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+        //     });
 
-            // Rétablir icon dropdown
-            document.querySelectorAll('.btn-vitrine1 .logo_deroulant').forEach(icon => {
-                icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
-            });
+        //     // Rétablir le texte initial du bouton
+        //     const buttonVitrine1 = document.querySelector('.btn-vitrine1');
+        //     buttonVitrine1.childNodes[0].textContent = "Catégories";
+        // });
 
-            // Rétablir le texte initial du bouton
-            const buttonVitrine1 = document.querySelector('.btn-vitrine1');
-            buttonVitrine1.childNodes[0].textContent = "Catégories";
-        });
 
-        // Bouton tout_voir Disponibilité
-        document.querySelector('.dropdown_statut .tout_voir').addEventListener('click', function() {
-            // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
-            this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
-                li.classList.remove('selected'); 
-            });
-            // Fermez le dropdown-menu
-            const dropdownMenu = this.closest('.dropdown-menu');
-            dropdownMenu.style.display = 'none';
+        // // Bouton tout_voir Disponibilité
+        // document.querySelector('.dropdown_statut .tout_voir').addEventListener('click', function() {
+        //     // Ajoutez la classe 'selected' à tous les éléments li dans le dropdown-menu
+        //     this.closest('.dropdown-menu').querySelectorAll('li:not(.tout_voir)').forEach(li => {
+        //         li.classList.remove('selected'); 
+        //     });
+        //     // Fermez le dropdown-menu
+        //     const dropdownMenu = this.closest('.dropdown-menu');
+        //     dropdownMenu.style.display = 'none';
 
-            // Rétablir icon dropdown
-            document.querySelectorAll('.btn-vitrine2 .logo_deroulant').forEach(icon => {
-                icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
-            });
+        //     // Rétablir icon dropdown
+        //     document.querySelectorAll('.btn-vitrine2 .logo_deroulant').forEach(icon => {
+        //         icon.src = "{% static 'FabiApp/img/dropdown-icon.png' %}";
+        //     });
 
-            // Rétablir le texte initial des boutons
-            const buttonVitrine2 = document.querySelector('.btn-vitrine2');
-            buttonVitrine2.childNodes[0].textContent = "Disponibilité";
-        });
+        //     // Rétablir le texte initial des boutons
+        //     const buttonVitrine2 = document.querySelector('.btn-vitrine2');
+        //     buttonVitrine2.childNodes[0].textContent = "Disponibilité";
+        // });
+
+
+
+
+
+        // // GESTION DES FILTRES
+
+        // let selectedCategory = new URLSearchParams(window.location.search).get('categorie');
+        // let selectedStatus = new URLSearchParams(window.location.search).get('statut');
+
+
+        // // Fonction pour appliquer la classe 'selected' et mettre à jour le texte du bouton
+        // function applySelectedState() {
+        //     // Gérer le bouton Catégorie
+        //     const categoryButton = document.querySelector('.btn-vitrine1');
+        //     if (selectedCategory) {
+        //         categoryButton.childNodes[0].textContent = selectedCategory + " "; // Mettre à jour le texte du bouton
+        //         document.querySelectorAll('.dropdown_categorie li').forEach(link => {
+        //             if (link.getAttribute('data-filter') === selectedCategory) {
+        //                 link.classList.add('selected'); // Ajouter la classe 'selected'
+        //             } else {
+        //                 link.classList.remove('selected');
+        //             }
+        //         });
+        //     } else {
+        //         categoryButton.childNodes[0].textContent = "Catégories ";
+        //     }
+
+        //     // Gérer le bouton Statut
+        //     const statusButton = document.querySelector('.btn-vitrine2');
+        //     if (selectedStatus) {
+        //         statusButton.childNodes[0].textContent = selectedStatus + " ";
+        //         document.querySelectorAll('.dropdown_statut li').forEach(link => {
+        //             if (link.getAttribute('data-filter') === selectedStatus) {
+        //                 link.classList.add('selected');
+        //             } else {
+        //                 link.classList.remove('selected');
+        //             }
+        //         });
+        //     } else {
+        //         statusButton.childNodes[0].textContent = "Disponibilité ";
+        //     }
+        // }
+
+        // // Appliquer l'état 'selected' et le texte du bouton au chargement de la page
+        // applySelectedState();
+
+
+        // // Gérer la sélection d'une catégorie
+        // document.querySelectorAll('.dropdown_categorie li').forEach(link => {
+        //     link.addEventListener('click', function(event) {
+        //         event.preventDefault();
+        //         selectedCategory = this.getAttribute('data-filter') === 'all' ? null : this.getAttribute('data-filter');
+        //         updateMeubles();
+        //     });
+        // });
+
+        // // Gérer la sélection d'un statut
+        // document.querySelectorAll('.dropdown_statut li').forEach(link => {
+        //     link.addEventListener('click', function(event) {
+        //         event.preventDefault();
+        //         selectedStatus = this.getAttribute('data-filter') === 'all' ? null : this.getAttribute('data-filter');
+        //         updateMeubles();
+        //     });
+        // });
+
+        // // Gérer le bouton Effacer pour réinitialiser les filtres
+        // document.querySelector('.btn-effacer').addEventListener('click', function() {
+        //     selectedCategory = null;
+        //     selectedStatus = null;
+        //     updateMeubles();
+        // });
+
+        // // Fonction pour mettre à jour les meubles affichés en fonction des filtres
+        // function updateMeubles() {
+        //     const url = new URL(window.location.href);
+        //     if (selectedCategory) {
+        //         url.searchParams.set('categorie', selectedCategory);
+        //     } else {
+        //         url.searchParams.delete('categorie');
+        //     }
+        //     if (selectedStatus) {
+        //         url.searchParams.set('statut', selectedStatus);
+        //     } else {
+        //         url.searchParams.delete('statut');
+        //     }
+        //     console.log("Statut : " , selectedStatus)
+        //     console.log("Catégorie : " , selectedCategory)
+
+        //     window.location.href = url.toString();
+        // }
+
 
     </script>
+    <script src="{% static 'FabiApp/js/vitrine.js' %}"></script>
 
 </body>
 </html>

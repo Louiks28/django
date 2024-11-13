@@ -13,15 +13,50 @@ def apropos(request):
 def contact(request):
     return render(request, 'FabiApp/contact.html')
 
-def vitrine(request):
-    context = {
-        "meubles" : Meuble.objects.all().order_by('-date'),
-        "categories" : Meuble.objects.values_list('categorie', flat=True).distinct(),
-        "statuts" : Meuble.objects.values_list('statut', flat=True).distinct(),
-    }
+# def vitrine(request):
+
+#     context = {
+#         "meubles" : Meuble.objects.all().order_by('-date'),
+#         "categories" : Meuble.objects.values_list('categorie', flat=True).distinct(),
+#         "statuts" : Meuble.objects.values_list('statut', flat=True).distinct(),
+#     }
         
 
-    return render(request, 'FabiApp/vitrine.html', context)
+#     return render(request, 'FabiApp/vitrine.html', context)
+
+def vitrine(request):
+    
+    # Récupérer les filtres des paramètres de requête GET
+    categorie = request.GET.get('categorie')
+    statut = request.GET.get('statut')
+
+    # Filtrer les meubles en fonction des paramètres
+    meubles = Meuble.objects.all().order_by('-date')
+    if categorie:
+        meubles = meubles.filter(categorie=categorie).order_by('-date')
+    if statut:
+        meubles = meubles.filter(statut=statut).order_by('-date')
+
+    # Passer les meubles filtrés et les listes de catégories et statuts au template
+    categories = Meuble.objects.values_list('categorie', flat=True).distinct()
+    statuts = Meuble.objects.values_list('statut', flat=True).distinct()
+
+    return render(request, 'FabiApp/vitrine.html', {
+        'meubles': meubles,
+        'categories': categories,
+        'statuts': statuts,
+    })
+
+
+    # context = {
+    #     "meubles" : Meuble.objects.all().order_by('-date'),
+    #     "categories" : Meuble.objects.values_list('categorie', flat=True).distinct(),
+    #     "statuts" : Meuble.objects.values_list('statut', flat=True).distinct(),
+    # }
+        
+
+    # return render(request, 'FabiApp/vitrine.html', context)
+
 
 def show(request, meuble_id):
 
