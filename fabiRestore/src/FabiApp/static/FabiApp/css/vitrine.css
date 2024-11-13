@@ -1,17 +1,27 @@
 /* --- TITRE --- */
 .titre {
     margin-top: 150px;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     align-items: center;
     justify-content: center;
     display: flex;
+    flex-direction: column;
+    gap: 10px;
+
 }
+
+.titre h1 {
+    text-transform: uppercase;
+}
+
+.titre h2 {
+
+}
+
 
 
 /* ------ MENU DE SELECTION ------ */
 .selection {
-    border-top: solid black;
-    margin-top: 5rem;
     padding: 30px;
     align-items: center;
     justify-content: center;
