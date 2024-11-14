@@ -9,27 +9,33 @@
     <link rel="stylesheet" href="{% static 'FabiApp/css/footer.css' %}">
 </head>
 <body>
-    <div class="footerFabi">
-        <div class="logo">
-            <a href="{% url 'FabiApp:accueil_FabiRestore' %}">
-                <img class="logo_fabi_restore" src="{% static 'FabiApp/img/logo_fabi_restore_white.png' %}" alt="FabiRestore">
-            </a>
+    <div class="footerAll">
+        <div class="footerFabi">
+            <div class="logo">
+                <a href="{% url 'FabiApp:accueil_FabiRestore' %}">
+                    <img class="logo_fabi_restore" src="{% static 'FabiApp/img/logo_fabi_restore_white.png' %}" alt="FabiRestore">
+                </a>
+            </div>
+
+            <div class="navigation">
+                    <h1>Navigation</h1>
+                    <a href="{% url 'FabiApp:accueil_FabiRestore' %}">Accueil</a>
+                    <a href="{% url 'FabiApp:vitrine_FabiRestore' %}">Les meubles</a>
+            </div>
+
+            <div class="contact">
+                    <h1>Contact</h1>
+                    <p>jean.paul@hotmail.fr</p>
+                    <p>+33 6 73 44 10 89</p>
+                    <p>72530 Yvré l'Evêque</p>
+            </div>
         </div>
 
-       <div class="navigation">
-            Navigation
-       </div>
+        <div class="croquis">
+            <img class="croquis_img" src="{% static 'FabiApp/img/picto-croquis3.png' %}" alt="croquis">
+        </div>
 
-       <div class="contact">
-            Contact
-       </div>
-       
-       <div class="Croquis">
-            Croquis crayon de papier
-       </div>
-    
     </div>
-
     <div class="copyright">
         2024 ©FabiRestore  Tous droits réservés. Mention légales
     </div>

@@ -1,28 +1,27 @@
+.footerAll{
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+    background-color: rgb(5, 4, 32);
+}
+
 .footerFabi {
-    padding: 20px;
+    padding: 0 5rem;
     width: 100%;
     background-color: rgb(5, 4, 32);
     color: white;
-    align-items: center;
+    align-items: top;
     justify-content: space-between;
     display: flex;
     position: relative;
 }
 
-.footerFabi ul {
+.footerFabi .logo_fabi_restore {   /*le faire disparaitre quand l'écran devient trop petit ? */
+    max-width : 100px;
+    max-height : 100px;
+    margin-top: 70%;
+    margin-right: 2rem;
     display: flex;
-    gap: 5rem;
-    margin: 0 2rem;
-}
-
-.footerFabi .logo_fabi_restore {
-    width : 150px;
-    height : 150px;
-    margin-left: 5rem;
-}
-
-.footerFabi .Croquis {
-    margin-right: 5rem;
 }
 
 .copyright {
@@ -33,4 +32,47 @@
     align-items: center;
     justify-content: center;
     display: flex;
+}
+
+.navigation  {
+    padding: 40px 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact  {
+    padding: 40px 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation h1, .contact h1 {
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.navigation a, .contact p {
+    margin-bottom: 15px;
+}
+
+.croquis {
+    height: 100%;
+    width: 60%;
+}
+
+.croquis_img {
+    max-height: 260px;
+}
+
+
+@media (max-width: 1000px) {
+    .croquis {
+        display: none;
+    }
+
+    .footerFabi {
+        padding: 0 2rem;
+    }
 }
