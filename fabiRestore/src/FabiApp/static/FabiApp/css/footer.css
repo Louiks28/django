@@ -53,17 +53,32 @@
     text-transform: uppercase;
 }
 
-.navigation a, .contact p {
+.navigation h1 {
+    margin-bottom: 30px;
+}
+
+.contact h1 {
+    margin-bottom: 20px;
+}
+
+.navigation a {
     margin-bottom: 15px;
 }
 
+.contact p {
+    margin-bottom: 10px;
+}
+
 .croquis {
-    height: 100%;
-    width: 60%;
+    /* height: 100%;
+    width: 60%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .croquis_img {
-    max-height: 260px;
+    max-height: 280px;
 }
 
 

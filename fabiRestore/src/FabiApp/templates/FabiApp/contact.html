@@ -16,27 +16,36 @@
 <body>
     {% include './navbar.html' %}
 
-    <h1>CONTACTER FABI RESTORE</h1>
-    <div class="carte-contact">
-        <div class="telephone">
-            <a href="#">
-                <img class="logo" src="{% static 'FabiApp/img/picto-tel.png' %}" alt="picto telephone blanc transparent">
-            </a>
-            <p>+33 6.95.41.22.17</p>
+    <h1 class="contacth1">CONTACTER FABI RESTORE</h1>
+    <div class="contactAll">
+
+        <div class="carte-contact">
+            <div class="telephone">
+                <a href="#">
+                    <img class="logo" src="{% static 'FabiApp/img/picto-tel.png' %}" alt="picto telephone blanc transparent">
+                </a>
+                <p>+33 6.95.41.22.17</p>
+            </div>
+            <div class="email">
+                <a href="#">
+                    <img class="logo" src="{% static 'FabiApp/img/picto-email.png' %}" alt="picto email blanc transparent">
+                </a>
+                <p>jean.paul@hotmail.fr</p>
+            </div>
+            <div class="facebook">
+                <a href="#">
+                    <img class="logo" src="{% static 'FabiApp/img/picto-fb.png' %}" alt="picto facebook blanc transparent">
+                </a>
+                <p>nom facebook</p>
+            </div>
         </div>
-        <div class="email">
-            <a href="#">
-                <img class="logo" src="{% static 'FabiApp/img/picto-email.png' %}" alt="picto email blanc transparent">
-            </a>
-            <p>jean.paul@hotmail.fr</p>
+
+        <div class="contact_photo">
+            <img class="fabi_bricolage" src="{% static 'FabiApp/img/homme-bricolage.jpg' %}" alt="Fab qui bricole en noir et blanc">
         </div>
-        <div class="facebook">
-            <a href="#">
-                <img class="logo" src="{% static 'FabiApp/img/picto-fb.png' %}" alt="picto facebook blanc transparent">
-            </a>
-            <p>nom facebook</p>
-        </div>
+
     </div>
+    
 
     {% include './footer.html' %}
 </body>
