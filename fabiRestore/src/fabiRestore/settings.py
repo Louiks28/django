@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # DEBUG = True
 DEBUG = os.environ.get('DEBUG') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fabirestore.fr', 'www.fabirestore.fr']
 
 
 # Application definition
@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'fabiRestore.wsgi.application'
 DATABASES = {
     'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'OPTIONS':{ 'options': '-c search_path=fabi_restore_schema' },
+            'OPTIONS':{ 'options': '-c search_path=fabi_restore_schema,public' }, #on met aussi le schema public pour la réalisation des tests
             'NAME': os.environ.get('DB_NAME'),
             'USER': os.environ.get('DB_USER'),
             'PASSWORD': os.environ.get('DB_PASSWORD'),
